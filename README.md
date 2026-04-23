@@ -8,7 +8,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![skills.sh](https://img.shields.io/badge/skills.sh-canvas--mcp-blue)](https://skills.sh)
 
-MCP server for Canvas LMS with **87 tools** and **8 agent skills**. Works with Claude Desktop, Cursor, Codex, Windsurf, and [40+ other agents](https://skills.sh).
+MCP server for Canvas LMS with **88 tools** and **8 agent skills**. Works with Claude Desktop, Cursor, Codex, Windsurf, and [40+ other agents](https://skills.sh).
 
 ```bash
 npx skills add vishalsachdev/canvas-mcp
@@ -23,7 +23,7 @@ npx skills add vishalsachdev/canvas-mcp
   See CLAUDE.md "Documentation Maintenance" for full guidelines.
 -->
 
-Canvas MCP provides **87 tools** for interacting with Canvas LMS. Tools are organized by user type:
+Canvas MCP provides **88 tools** for interacting with Canvas LMS. Tools are organized by user type:
 
 <details>
 <summary><strong>Student Tools</strong> (click to expand)</summary>
@@ -160,7 +160,7 @@ Get AI-powered assistance with:
 - Accessing course content and discussions
 - Organizing your TODO list
 
-**[→ Get Started as a Student](https://github.com/vishalsachdev/canvas-mcp/blob/main/docs/STUDENT_GUIDE.md)**
+**[→ Get Started as a Student](https://canvas-mcp.illinihunt.org/student-guide.html)**
 
 ### For Educators 👨‍🏫
 Enhance your teaching with:
@@ -170,7 +170,7 @@ Enhance your teaching with:
 - **FERPA-compliant** student data handling
 - Bulk messaging and communication tools
 
-**[→ Get Started as an Educator](https://github.com/vishalsachdev/canvas-mcp/blob/main/docs/EDUCATOR_GUIDE.md)**
+**[→ Get Started as an Educator](https://canvas-mcp.illinihunt.org/educator-guide.html)**
 
 ### For Learning Designers 🎨
 AI-powered course design and quality assurance:
@@ -238,7 +238,7 @@ Complete FERPA compliance through systematic data anonymization when working wit
 - **FERPA-compliant analytics**: Ask "Which students need support?" without exposing real identities
 - **De-anonymization mapping tool** for faculty to correlate anonymous IDs with real students locally
 
-All student data is anonymized **before** it reaches AI systems. See [Educator Guide](https://github.com/vishalsachdev/canvas-mcp/blob/main/docs/EDUCATOR_GUIDE.md) for configuration details.
+All student data is anonymized **before** it reaches AI systems. See [Educator Guide](https://canvas-mcp.illinihunt.org/educator-guide.html) for configuration details.
 
 ### For Students: Your Data Stays Private
 
@@ -291,7 +291,7 @@ claude mcp add canvas \
 
 > **Find your Canvas URL:** It's your institution's Canvas domain with `/api/v1` appended (e.g., `https://canvas.illinois.edu/api/v1`). Check the URL bar when you log into Canvas.
 
-Your credentials are sent as HTTP headers with each request — they are never stored on the server. All 87 tools work the same as local installation.
+Your credentials are sent as HTTP headers with each request — they are never stored on the server. All 88 tools work the same as local installation.
 
 > **Privacy note:** The hosted server does not store or log credentials or Canvas data. However, data passes through a third-party VPS in transit. **Educators handling FERPA-protected student data should use the [local installation](#local-installation) instead.** The hosted server is ideal for students (who only access their own data) and for trying out Canvas MCP before installing locally.
 
@@ -557,9 +557,9 @@ Quick start guides: [Student](examples/student_quickstart.md) | [Educator](examp
 
 ## Documentation
 
-- **[Tool Documentation](tools/README.md)** — Complete reference for all 87 tools
-- **[Student Guide](docs/STUDENT_GUIDE.md)** — Getting started as a student
-- **[Educator Guide](docs/EDUCATOR_GUIDE.md)** — FERPA compliance and educator workflows
+- **[Tool Documentation](tools/README.md)** — Complete reference for all 88 tools
+- **[Student Guide](https://canvas-mcp.illinihunt.org/student-guide.html)** — Getting started as a student
+- **[Educator Guide](https://canvas-mcp.illinihunt.org/educator-guide.html)** — FERPA compliance and educator workflows
 - **[Bulk Grading Example](examples/bulk_grading_example.md)** — Token-efficient batch grading walkthrough
 - **[Development Guide](CLAUDE.md)** — Architecture and contributing
 
@@ -590,7 +590,7 @@ Four layers of runtime security, all enabled by default:
 | Structured audit logging | Opt-in: `LOG_ACCESS_EVENTS=true` |
 | Sandboxed code execution | `ENABLE_TS_SANDBOX=true` |
 
-FERPA-compliant anonymization for educators: `ENABLE_DATA_ANONYMIZATION=true`. See [Educator Guide](docs/EDUCATOR_GUIDE.md) for details.
+FERPA-compliant anonymization for educators: `ENABLE_DATA_ANONYMIZATION=true`. See [Educator Guide](https://canvas-mcp.illinihunt.org/educator-guide.html) for details.
 
 ## Publishing
 
@@ -607,6 +607,7 @@ Contributions are welcome! Feel free to:
 
 Thanks to everyone who has contributed to Canvas MCP:
 
+- **[@DomBarker99](https://github.com/DomBarker99)** — `read_course_file` tool for remote MCP deployments (#90)
 - **[@Promithius-DR](https://github.com/Promithius-DR)** — Role-based tool filtering and tool annotations (#84)
 - **[@Metzpapa](https://github.com/Metzpapa)** — File download and listing tools (#75)
 - **[@JCSnap](https://github.com/JCSnap)** — Student tool bug fixes (#72, #73)

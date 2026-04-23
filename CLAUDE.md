@@ -23,7 +23,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 canvas-mcp/
 ├── src/canvas_mcp/        # Main application code
 │   ├── core/             # Core utilities (client, config, validation)
-│   ├── tools/            # MCP tool implementations (87 tools across 15 files)
+│   ├── tools/            # MCP tool implementations (88 tools across 15 files)
 │   ├── resources/        # MCP resources and prompts
 │   └── server.py         # FastMCP server entry point
 ├── skills/               # Agent skills for skills.sh (8 skills)
@@ -191,9 +191,11 @@ See: [Issue #56](https://github.com/vishalsachdev/canvas-mcp/issues/56) for comp
 **When adding a new tool**, update: `tools/README.md` → `AGENTS.md` → `TOOL_MANIFEST.json`. Do NOT update `README.md` unless it's a major feature. Do NOT duplicate tool usage docs in `CLAUDE.md` (architecture only).
 
 ## Current Focus
-- [x] Re-enable GitHub Actions (account-level billing toggle)
-- [x] Create v1.1.0 GitHub Release (created manually via `gh release create`)
 - [x] Release v1.2.0 — role-based filtering, accessibility, security hardening, contributor acknowledgements
+- [x] Merge PR #90 (`read_course_file` for remote MCP deployments, @DomBarker99) — tool count 87 → 88
+- [x] Repo hygiene audit — -9,260 lines of stale/orphan/duplicate content
+- [x] Weekly maintenance cleanup (PR #92 dead code + floor bumps; PR #93 drop phantom fastmcp dep)
+- [ ] Tag v1.3.0 release (read_course_file is MCP-Registry-worthy feature)
 - [ ] Backlog triage (module templates, bulk creation, page versioning)
 
 ## Roadmap
@@ -215,11 +217,11 @@ See: [Issue #56](https://github.com/vishalsachdev/canvas-mcp/issues/56) for comp
 - [ ] Page content versioning/history tools
 
 ## Session Log
-> Full history: [session-history.md](./session-history.md)
+> Full history: [docs/session-history.md](./docs/session-history.md)
 
-### 2026-04-10
-- **Rubric tool rationalization** (PR #86): Reduced rubric tools 11 → 6 (total 92 → 87). Deleted 3 broken/unused tools, merged 3 overlapping reads into `get_rubric`, renamed 3 for clarity, moved `bulk_grade_submissions` to assignments.py. Net -540 lines from rubrics.py.
-- **Stale markdown cleanup** (PR #87): Deleted 11 fully-implemented plans, satisfied specs, and dead artifacts. -4,766 lines.
-- **Codebase health audit**: Analyzed all 92 tools against session history — ~50 had no evidence of use. Rubric tools were worst case (2 disabled, 3 undocumented, 3 overlapping).
-- Next: Consider rationalizing peer review tools (9 tools, similar pattern). Deploy docs to Cloudflare Pages (tool count 87). Backlog triage.
+### 2026-04-21
+- **Merged PR #93** (`chore/drop-unused-fastmcp-dep`, commit `eebac6a`): Weekly maintenance report #91 flagged fastmcp 2.14 → 3.x as a 🔴 high-priority upgrade. Investigation showed the repo imports `from mcp.server.fastmcp import FastMCP` (bundled FastMCP 1.0 inside the official `mcp` SDK v1.26.0) — zero files import the standalone `fastmcp` package. The `fastmcp>=2.14.0` pin was phantom. Replaced with explicit `mcp>=1.26.0,<2` (upper bound per Codex plan review), regenerated uv.lock. Net −794 lines, pruned ~30 unused transitive deps (authlib, cyclopts, pydocket, py-key-value-aio, rich, typer, websockets, etc). All 363 tests pass, stdio + streamable-http transports verified, CI 8/8 green. Admin-merged through branch protection.
+- **Codex integration**: Used `codex:codex-rescue` subagent for plan review (caught need for upper bound + "intentional, not to-be-re-flagged" framing) and `/codex:rescue` for post-push diff review (APPROVE with evidence from uv.lock and upstream mcp docs).
+- **Key learning**: When a maintenance bot flags a dep upgrade, first verify the dep is actually imported. Weekly-report "🔴 High" can be a false positive on a phantom pin.
+- Next: Tag v1.3.0 release for `read_course_file` (still pending from prior session). Backlog triage. Note: `docs/data/impact.json` still dirty from prior session. Deleted the `canvas-mcp-meets-skills-sh` article draft as not relevant.
 
